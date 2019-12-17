@@ -1,30 +1,48 @@
-pipeline{
+pipeline {
     agent any
-
-    stages{
-        stage ('Compile Stage'){
-            steps {
-                "Compile Stage"
-                //withMaven(maven : 'Maven_home')
-                //sh 'mvn clean compile'
-                
-            }
-        }
-    }
-        stage ('Testing Stage'){
-            steps {
-                echo "Testing Stage"
-                //withMaven(maven : 'Maven_home'){
-                //sh 'mvn test'
-            }
-        }
-    }
-        stage ('Deployment Stage'){
-            steps {
-                echo "Deployment Stage"
-                //withMaven(maven : 'Maven_home'){
-                //sh 'mvn deploy'
+    stages {
+        stage('One') {
+                steps {
+                        echo 'Hi, this is Zulaikha from edureka'
+			
                 }
-            }
+        }
+	    stage('Two'){
+		    
+		steps {
+			input('Do you want to proceed?')
+        }
+	    }
+        stage('Three') {
+                when {
+                        not {
+                                branch "master"
+                        }
+                }
+                steps {
+			echo "Hello"
+                        }
+        }
+        stage('Four') {
+                parallel {
+                        stage('Unit Test') {
+                                steps{
+                                        echo "Running the unit test..."
+                                }
+                        }
+                        stage('Integration test') {
+                        agent {
+                                docker {
+                                        reuseNode false
+					image 'ubuntu'
+                                        }
+			}
+				steps {
+					echo 'Running the integration test..'
+				}
+                               
+			}  }
         }
     }
+}
+
