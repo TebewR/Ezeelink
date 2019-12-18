@@ -8,7 +8,7 @@ pipeline {
 			
                 }
         }
-	    stage('Preparation'){    
+	stage('Preparation'){    
 		steps {
 			echo 'Preparation Before Test'
         }
