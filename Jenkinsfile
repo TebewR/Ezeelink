@@ -18,7 +18,7 @@ pipeline {
         stage('Three') {
 		steps {
 			echo 'First Test'
-			sh 'src\test\java\test\PaketDataTest'
+			sh 'src/test/java/test/PaketDataTest'
 		}
         }
         stage('Four') {
