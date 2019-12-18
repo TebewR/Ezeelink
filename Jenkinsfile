@@ -8,13 +8,13 @@ pipeline {
                 }
         }
 	    stage('Two'){
-		    
-		steps {                        agent {
-                                docker {
-                                        reuseNode false
-					image 'ubuntu'
+		  agent {
+                      docker {
+                        reuseNode false
+			image 'ubuntu'
                                         }
 			}
+		steps { 
 			input('Do you want to proceed?')
         }
 	    }
