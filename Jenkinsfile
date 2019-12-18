@@ -1,25 +1,29 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout SCM') {
+        stage('One') {
                 steps {
-                        echo 'Checkout From SCM'
-			git branch : 'master', url : 'https://github.com/TebewR/Pipeline-Test-FirstRun.git' 
+                        echo 'Hi, this is Zulaikha from edureka'
 			
                 }
         }
-	stage('Preparation'){    
+	    stage('Two'){
+		    
 		steps {
-			echo 'Preparation Before Test'
+			input('Do you want to proceed?')
         }
 	    }
-        stage('FirstTest') {
+        stage('Three') {
+                when {
+                        not {
+                                branch "master"
+                        }
+                }
                 steps {
-			echo 'First Test'
-			sh 'src/test/java/test/PaketDataTest'
-
+			echo "Hello"
+                        }
         }
-        stage('SecondTest') {
+        stage('Four') {
                 parallel {
                         stage('Unit Test') {
                                 steps{
@@ -27,6 +31,12 @@ pipeline {
                                 }
                         }
                         stage('Integration test') {
+                        agent {
+                                docker {
+                                        reuseNode false
+					image 'ubuntu'
+                                        }
+			}
 				steps {
 					echo 'Running the integration test..'
 				}
@@ -35,5 +45,3 @@ pipeline {
         }
     }
 }
-}
-
