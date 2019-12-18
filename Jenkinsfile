@@ -1,5 +1,9 @@
 pipeline {
     agent any
+	    tools {
+        maven 'Maven 3.3.9'
+        jdk 'jdk8'
+	    }
     stages {
         stage('One') {
                 steps {
@@ -10,7 +14,7 @@ pipeline {
 	    stage('Two'){
 		steps { 
 			bat ('mvn test')
-			junit '***/targer/*.xml'
+			junit '***/target/*.xml'
        	   }
 	 }
         stage('Three') {
