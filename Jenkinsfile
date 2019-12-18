@@ -1,29 +1,25 @@
 pipeline {
     agent any
     stages {
-        stage('One') {
+        stage('Checkout SCM') {
                 steps {
-                        echo 'Hi, this is Zulaikha from edureka'
+                        echo 'Checkout From SCM'
+			git branch : 'master', url : 'https://github.com/TebewR/Pipeline-Test-FirstRun.git' 
 			
                 }
         }
-	    stage('Two'){
-		    
+	    stage('Preparation'){    
 		steps {
-			input('Do you want to proceed?')
+			echo 'Preparation Before Test'
         }
 	    }
-        stage('Three') {
-                when {
-                        not {
-                                branch "master"
-                        }
-                }
+        stage('FirstTest') {
                 steps {
-			echo "Hello"
-                        }
+			echo 'First Test'
+			sh 'src\test\java\test\PaketDataTest'
+
         }
-        stage('Four') {
+        stage('SecondTest') {
                 parallel {
                         stage('Unit Test') {
                                 steps{
