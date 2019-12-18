@@ -8,22 +8,11 @@ pipeline {
                 }
         }
 	    stage('Two'){
-		  agent {
-                      docker {
-                        reuseNode false
-			image 'ubuntu'
-                                        }
-			}
 		steps { 
 			input('Do you want to proceed?')
         }
 	    }
         stage('Three') {
-                when {
-                        not {
-                                branch "master"
-                        }
-                }
                 steps {
 			echo "Hello"
                         }
