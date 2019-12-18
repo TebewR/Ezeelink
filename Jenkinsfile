@@ -3,25 +3,23 @@ pipeline {
     stages {
         stage('One') {
                 steps {
-                        echo 'Hi, this is Zulaikha from edureka'
+			echo "Checkout From SCM"
+                       	git branch : 'master', url : 'https://github.com/TebewR/Pipeline-Test-FirstRun.git'
+
 			
                 }
         }
 	    stage('Two'){
 		    
 		steps {
-			input('Do you want to proceed?')
+			echo 'Preparation Before Test'
         }
 	    }
         stage('Three') {
-                when {
-                        not {
-                                branch "master"
-                        }
-                }
-                steps {
-			echo "Hello"
-                        }
+		steps {
+			echo 'First Test'
+			sh 'src\test\java\test\PaketDataTest'
+		}
         }
         stage('Four') {
                 parallel {
@@ -31,12 +29,6 @@ pipeline {
                                 }
                         }
                         stage('Integration test') {
-                        agent {
-                                docker {
-                                        reuseNode false
-					image 'ubuntu'
-                                        }
-			}
 				steps {
 					echo 'Running the integration test..'
 				}
