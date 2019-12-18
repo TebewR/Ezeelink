@@ -9,7 +9,7 @@ pipeline {
         }
 	    stage('Two'){
 		steps { 
-			bat ('make')
+			bat ('mvn clean test')
 			junit '***/targer/*.xml'
        	   }
 	 }
