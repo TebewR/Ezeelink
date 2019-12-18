@@ -1,41 +1,33 @@
-pipeline {
+pipeline{
     agent any
-	    tools {
-        maven 'Maven_home'
-        jdk 'JAVA'
-	    }
-    stages {
-        stage('One') {
-                steps {
-                        echo 'Hi'
-			
-                }
-        }
-	    stage('Two'){
-		steps { 
-			bat ('mvn test')
-			junit '***/target/*.xml'
-       	   }
-	 }
-        stage('Three') {
-                steps {
-			echo "Hello"
-           }
-        }
-        stage('Four') {
-                parallel {
-                        stage('Unit Test') {
-                                steps{
-                                        echo "Running the unit test..."
-                                }
-                        }
-                        stage('Integration test') {
-				steps {
-					echo 'Running the integration test..'
-				}
-                               
-			}  }
+    Maven'Maven_home'
+    Java'JAVA'
+
+    stages{
+        stage ('Compile Stage'){
+            steps {
+                bat'mvn clean compile'
+            }
         }
     }
-}
-
+        stage ('Testing Stage'){
+            steps {
+                bat'mvn test'
+            }
+        }
+    }
+        stage ('Deployment Stage'){
+            steps {
+                echo'maven deployment'
+                }
+            }
+        }
+        stage ('Parallel'){
+            steps {
+                echo'Parallel Testing'
+            }
+        }
+            steps{
+                echo'Parallel Testing 2'
+            }
+    }
