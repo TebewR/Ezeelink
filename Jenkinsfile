@@ -9,13 +9,14 @@ pipeline {
         }
 	    stage('Two'){
 		steps { 
-			bat ("mvn clean test")
-        }
-	    }
+			bat ('make')
+			junit '***/targer/*.xml'
+       	   }
+	 }
         stage('Three') {
                 steps {
 			echo "Hello"
-                        }
+           }
         }
         stage('Four') {
                 parallel {
