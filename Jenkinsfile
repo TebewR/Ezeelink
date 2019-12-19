@@ -10,6 +10,20 @@ pipeline {
                 }
             }
         }
+        
+        parallel{
+            stage ('Parallel'){
+                steps{
+                    echo 'Parellel Pipeline'
+                }
+            }
+            
+            stage ('Pipeline'){
+                steps{
+                    echo 'Parallel Testing'
+                }
+            }
+        }
 
         stage ('Testing Stage') {
 
