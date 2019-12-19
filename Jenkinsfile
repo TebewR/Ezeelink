@@ -1,7 +1,7 @@
 pipeline{
     agent any
-    maven 'Maven_home'
-    java 'JAVA'
+    Maven 'maven'
+    Java 'JAVA'
 
     stages{
         stage ('compile stage'){
