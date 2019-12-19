@@ -10,7 +10,7 @@ pipeline {
                 }
             }
         }
-        
+        stage('Parallel Test'){
         parallel{
             stage ('Parallel'){
                 steps{
@@ -24,7 +24,7 @@ pipeline {
                 }
             }
         }
-
+    }
         stage ('Testing Stage') {
 
             steps {
