@@ -5,7 +5,7 @@ pipeline{
     stages{
         stage ('compile stage'){
             steps {
-                bat'${mvnHome}\bin\mvn clean compile'
+                bat'${mvnHome}/bin/mvn clean compile'
             }
         }
         stage ('testing stage'){
