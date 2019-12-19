@@ -29,7 +29,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven') {
-                    bat 'mvn -Dtest=PaketDataTest test'
+                    bat 'mvn -DTest=PaketDataTest#PaketDataVA test'
                 }
             }
         }
