@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    maven "maven"
+    maven "mvn3.6.3"
     jdk "JAVA"
 
     stages{
