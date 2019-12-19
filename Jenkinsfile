@@ -1,33 +1,48 @@
-pipeline{
+pipeline {
     agent any
-    Maven 'maven'
-    Java 'JAVA'
-
-    stages{
-        stage ('compile stage'){
-            steps {
-                bat'mvn clean compile'
-            }
-        }
-    }
-        stage ('testing stage'){
-            steps {
-                bat'mvn test'
-            }
-        }
-    }
-        stage ('deployment stage'){
-            steps {
-                echo'maven deployment'
+    stages {
+        stage('One') {
+                steps {
+                        echo 'Hi, this is Zulaikha from edureka'
+			
                 }
-            }
         }
-        stage ('parallel'){
-            steps {
-                echo'Parallel Testing'
-            }
+	    stage('Two'){
+		    
+		steps {
+			input('Do you want to proceed?')
         }
-            steps{
-                echo'Parallel Testing 2'
-            }
+	    }
+        stage('Three') {
+                when {
+                        not {
+                                branch "master"
+                        }
+                }
+                steps {
+			echo "Hello"
+                        }
+        }
+        stage('Four') {
+                parallel {
+                        stage('Unit Test') {
+                                steps{
+                                        echo "Running the unit test..."
+                                }
+                        }
+                        stage('Integration test') {
+                        agent {
+                                docker {
+                                        reuseNode false
+					image 'ubuntu'
+                                        }
+			}
+				steps {
+					echo 'Running the integration test..'
+				}
+                               
+			}  }
+        }
     }
+}
+
