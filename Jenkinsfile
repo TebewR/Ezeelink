@@ -30,3 +30,4 @@ pipeline{
                 echo'Parallel Testing 2'
             }
     }
+}
