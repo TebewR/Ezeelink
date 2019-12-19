@@ -1,6 +1,6 @@
 pipeline{
     agent any
-    Maven 'maven'
+    Maven 'maven_home'
     Java 'JAVA'
 
     stages{
