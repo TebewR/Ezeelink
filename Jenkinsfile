@@ -4,25 +4,25 @@ pipeline{
     Java 'JAVA'
 
     stages{
-        stage ('Compile Stage'){
+        stage ('compile stage'){
             steps {
                 bat'mvn clean compile'
             }
         }
     }
-        stage ('Testing Stage'){
+        stage ('testing stage'){
             steps {
                 bat'mvn test'
             }
         }
     }
-        stage ('Deployment Stage'){
+        stage ('deployment stage'){
             steps {
                 echo'maven deployment'
                 }
             }
         }
-        stage ('Parallel'){
+        stage ('parallel'){
             steps {
                 echo'Parallel Testing'
             }
