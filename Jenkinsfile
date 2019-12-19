@@ -1,12 +1,11 @@
 pipeline{
     agent any
-    maven "mvn3.6.3"
-    jdk "JAVA"
+    def mvnhome = tool name: 'maven', type: 'maven'
 
     stages{
         stage ('compile stage'){
             steps {
-                bat'mvn clean compile'
+                bat'${mvnHome}\bin\mvn clean compile'
             }
         }
         stage ('testing stage'){
