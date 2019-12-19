@@ -29,5 +29,3 @@ pipeline{
             steps{
                 echo'Parallel Testing 2'
             }
-    }
-}
