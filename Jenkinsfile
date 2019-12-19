@@ -19,13 +19,5 @@ pipeline{
                 echo'maven deployment'
                 }
             }
-        stage ('parallel'){
-            steps {
-                echo'Parallel Testing'
-            }
-        }
-            steps{
-                echo'Parallel Testing 2'
-            }
     }
 }
